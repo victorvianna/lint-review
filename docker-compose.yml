@@ -8,7 +8,7 @@ services:
     networks:
       - back-tier
   web:
-    image: markstory/lint-review
+    build: .
     command:
       - gunicorn
       - -c
@@ -20,6 +20,8 @@ services:
       timeout: 10s
       retries: 3
     environment: &lintreview_env
+      GITHUB_OAUTH_TOKEN: ${GITHUB_OAUTH_TOKEN}
+      LINTREVIEW_SERVER_NAME: ${LINTREVIEW_SERVER_NAME}
       LINTREVIEW_GUNICORN_BIND: '0.0.0.0:5000'
       LINTREVIEW_GUNICORN_LOG_ACCESS: '-'
       LINTREVIEW_GUNICORN_LOG_ERROR: '-'
@@ -34,7 +36,7 @@ services:
       - broker
       - worker
   worker:
-    image: markstory/lint-review
+    build: .
     command:
       - celery
       - -A
@@ -51,6 +53,8 @@ services:
       retries: 3
     environment:
       <<: *lintreview_env
+      GITHUB_OAUTH_TOKEN: ${GITHUB_OAUTH_TOKEN}
+      LINTREVIEW_SERVER_NAME: ${LINTREVIEW_SERVER_NAME}
       C_FORCE_ROOT: "true"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

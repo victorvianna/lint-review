@@ -25,4 +25,3 @@ ADD . /code
 ADD requirements.txt /code/
 RUN cd /code && pip install -r requirements.txt
 RUN cd /code && pip install .
-RUN cp /code/settings.sample.py /code/settings.py

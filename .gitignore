@@ -4,7 +4,6 @@ dist/
 *.egg-info
 tags
 /env
-/settings.py
 /workspace
 /ca.crt
 /node_modules
@@ -12,3 +11,7 @@ tags
 /bundle
 /.bundle
 output.log
+*.log
+*.rpm
+*.deb
+

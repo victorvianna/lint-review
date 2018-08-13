@@ -1,2 +1,0 @@
-[tools]
-linters = flake8, jsonlint, yamllint
