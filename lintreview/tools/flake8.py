@@ -3,6 +3,7 @@ import os
 import logging
 import lintreview.docker as docker
 from lintreview.tools import Tool, process_quickfix, python_image
+from time import sleep
 
 log = logging.getLogger(__name__)
 
@@ -48,15 +49,24 @@ class Flake8(Tool):
         Only a single process is made for all files
         to save resources.
         """
-        log.debug('Processing %s files with %s', len(files), self.name)
+        log.info('Processing %s files with %s', len(files), self.name)
+        log.info('Files')
+        log.info(files)
         command = self.make_command(files)
+        log.info('Command')
+        log.info(command)
+#        sleep(5)
         image = python_image(self.options)
         output = docker.run(image, command, source_dir=self.base_path)
+#        sleep(10)
         if not output:
-            log.debug('No flake8 errors found.')
+            log.info('No flake8 errors found.')
             return False
 
         output = output.split("\n")
+#        sleep(10)
+        log.info('Output')
+        log.info(output)
         process_quickfix(self.problems, output, docker.strip_base)
 
     def make_command(self, files):

@@ -33,6 +33,8 @@ class TestFlake8(TestCase):
     def test_process_files__one_file_fail(self):
         self.tool.process_files([self.fixtures[1]])
         problems = self.problems.all(self.fixtures[1])
+        print("len de problems")
+        print(len(problems))
         assert len(problems) >= 6
 
         eq_(2, problems[0].line)
@@ -46,6 +48,8 @@ class TestFlake8(TestCase):
         eq_([], self.problems.all(self.fixtures[0]))
 
         problems = self.problems.all(self.fixtures[1])
+        print("len de problems")
+        print(len(problems))
         assert len(problems) >= 6
 
         eq_(2, problems[0].line)
@@ -60,6 +64,8 @@ class TestFlake8(TestCase):
         eq_([], self.problems.all(self.fixtures[0]))
 
         problems = self.problems.all(self.fixtures[1])
+        print("len de problems")
+        print(len(problems))
         assert len(problems) >= 6
 
         eq_(2, problems[0].line)
@@ -74,6 +80,8 @@ class TestFlake8(TestCase):
         eq_([], self.problems.all(self.fixtures[0]))
 
         problems = self.problems.all(self.fixtures[1])
+        print("len de problems")
+        print(len(problems))
         assert len(problems) >= 6
 
         eq_(2, problems[0].line)
@@ -172,3 +180,4 @@ class TestFlake8(TestCase):
 
         text = [c.body for c in self.problems.all()]
         assert_in("'<>' is deprecated", ' '.join(text))
+

@@ -7,6 +7,8 @@ services:
       - "15672:15672"
     networks:
       - back-tier
+    cap_add:
+      - ALL
   web:
     build: .
     command:
@@ -35,6 +37,8 @@ services:
     depends_on:
       - broker
       - worker
+    cap_add:
+      - ALL
   worker:
     build: .
     command:
@@ -64,7 +68,8 @@ services:
       - back-tier
     depends_on:
       - broker
-
+    cap_add:
+      - ALL
 networks:
   front-tier:
   back-tier:

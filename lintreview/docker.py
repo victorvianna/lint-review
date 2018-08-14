@@ -118,7 +118,8 @@ def run(image, command, source_dir, env=None, timeout=None, name=None):
     # to get around encoding issues.
     cmd += [six.text_type(arg).encode('utf8') for arg in command]
 
-    log.debug('Running %s', cmd)
+    log.info('Running %s', cmd)
+#    print (cmd)
     process = subprocess.Popen(
         cmd,
         stdin=subprocess.PIPE,
@@ -129,7 +130,7 @@ def run(image, command, source_dir, env=None, timeout=None, name=None):
     # Get output bytes/string
     output, error = process.communicate()
     output = error + output
-    log.debug('Container output was: %s', output)
+    log.info('Container output was: %s', output)
 
     # Workaround for bytestr in py2 and str in py3
     if isinstance(output, six.binary_type):
