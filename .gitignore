@@ -11,3 +11,4 @@ tags
 /bundle
 /.bundle
 output.log
+ENV.sh
