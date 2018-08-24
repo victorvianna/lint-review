@@ -1,4 +1,11 @@
-# Lint Review
+# Adapt to AWS
+
+- Create a python2 virtual environment (python3 did not work for me).
+- I replaced /tmp/workspace with ~/tmp/workspace so that one doesn't have to run as root.  
+(you must create this directory)
+- On  the AWS security group configurations, allow traffic coming from github api to port 5000 (you can use [this](https://gist.github.com/victorvianna/d4af8d6eedbc87b626627f5543db9871)) and traffic coming from your own instance (127.0.0.0/8) to port 5672.
+
+# [ORIGINAL README]
 
 [![Build Status](https://api.travis-ci.org/markstory/lint-review.svg?branch=master)](https://travis-ci.org/markstory/lint-review)
 [![codecov.io](https://codecov.io/github/markstory/lint-review/coverage.svg?branch=master)](https://codecov.io/github/markstory/lint-review?branch=master)
